@@ -1,0 +1,11 @@
+<div class="ingresoHoteles">
+  <h1 class="titulo">Registro hotel</h1>
+  <div class="nombre"><label for="">Nombre:</label><input [(ngModel)]="hotel.nombre"></div>
+  <div class="direccion"><label for="">Dirección:</label><input [(ngModel)]="hotel.direccion"></div>
+  <div class="ciudad"><label for="">Ciudad:</label><select name="" id="" [(ngModel)]="hotel.ciudad"></select></div>
+  <div class="nit"><label for="">NIT:</label><input [(ngModel)]="hotel.nit"></div>
+  <div class="numeroHabitaciones"><label for="">Número de habitaciones</label><input [(ngModel)]="hotel.numeroHabitaciones"></div>
+  <button (click)="agregar()">Registrar hotel</button>
+</div>
+
+<router-outlet></router-outlet>
