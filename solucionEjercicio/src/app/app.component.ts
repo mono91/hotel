@@ -10,10 +10,14 @@ import { Ciudad } from './Clases/Ciudad';
 export class AppComponent {
   hotel: Hotel = new Hotel();
   ciudades: Ciudad[] = []
+  hoteles: Hotel[] = []
 
   ngOnInit() {
     let bogota = new Ciudad(1, "Bogotá");
     this.ciudades.push(bogota)
+
+    let hotel = new Hotel("Prueba", "Prueba", "" , 0, 0)
+    this.hoteles.push(hotel)
 
   }
 

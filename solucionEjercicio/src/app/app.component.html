@@ -5,13 +5,30 @@
   <div class="ciudad">
     <label for="">Ciudad:</label>
     <select name="" id="" [(ngModel)]="hotel.ciudad">
-      <option value="0" selected>Selecciona</option>
+      <option value="0" selected>Seleccionar</option>
       <option *ngFor="let ciudad of ciudades" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
-
     </select></div>
   <div class="nit"><label for="">NIT:</label><input [(ngModel)]="hotel.nit"></div>
   <div class="numeroHabitaciones"><label for="">Número de habitaciones</label><input [(ngModel)]="hotel.numeroHabitaciones"></div>
   <button (click)="agregar()">Registrar hotel</button>
 </div>
+
+<div>
+  <h2>Hoteles registrados</h2>
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Dirección</th>
+      <th>Ciudad</th>
+      <th>Configurar habitaciones</th>
+    </tr>
+    <tr *ngFor="let h of hoteles">
+      <td>{{h.nombre}}</td>
+      <td>{{h.direccion}}</td>
+      <td>{{h.ciudad}}</td>
+      <td><button>Modificar</button></td>
+    </tr>
+  </table>
+</div> 
 
 <router-outlet></router-outlet>
