@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Hotel } from './Hotel';
+import { Ciudad } from './Clases/Ciudad';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,17 @@ import { Hotel } from './Hotel';
 })
 export class AppComponent {
   hotel: Hotel = new Hotel();
+  ciudades: Ciudad[] = []
 
-  agregar(){
+  ngOnInit() {
+    let bogota = new Ciudad(1, "Bogotá");
+    this.ciudades.push(bogota)
+
+  }
+
+  agregar() {
     console.log(this.hotel);
-    
+
   }
 
 }
