@@ -1,34 +1,79 @@
-<div class="ingresoHoteles">
-  <h1 class="titulo">Registro hotel</h1>
-  <div class="nombre"><label for="">Nombre:</label><input [(ngModel)]="hotel.nombre"></div>
-  <div class="direccion"><label for="">Dirección:</label><input [(ngModel)]="hotel.direccion"></div>
-  <div class="ciudad">
-    <label for="">Ciudad:</label>
-    <select name="" id="" [(ngModel)]="hotel.ciudad">
-      <option value="0" selected>Seleccionar</option>
-      <option *ngFor="let ciudad of ciudades" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
-    </select></div>
-  <div class="nit"><label for="">NIT:</label><input [(ngModel)]="hotel.nit"></div>
-  <div class="numeroHabitaciones"><label for="">Número de habitaciones</label><input [(ngModel)]="hotel.numeroHabitaciones"></div>
-  <button (click)="agregar()">Registrar hotel</button>
-</div>
+<div class="container" >
+  <div class="ingresoHoteles">
+    <h1 class="titulo">Registro hotel</h1>
+    <div class="nombre"><label for="">Nombre:</label><input [(ngModel)]="hotel.nombre"></div>
+    <div class="direccion"><label for="">Dirección:</label><input [(ngModel)]="hotel.direccion"></div>
+    <div class="ciudad">
+      <label for="">Ciudad:</label>
+      <select name="" id="" [(ngModel)]="hotel.ciudad">
+        <option value="0" selected>Seleccionar</option>
+        <option *ngFor="let ciudad of ciudades" value="{{ciudad.id}}">{{ciudad.nombre}}</option>
+      </select></div>
+    <div class="nit"><label for="">NIT:</label><input [(ngModel)]="hotel.nit"></div>
+    <div class="numeroHabitaciones"><label for="">Número de habitaciones:</label><input [(ngModel)]="hotel.numeroHabitaciones"></div>
+    <button class="btn btn-primary" (click)="agregar()">Registrar hotel</button>
+  </div>
+  <div class="registrados">
+    <h2>Hoteles registrados</h2>
+    <table class="table">
+      <tr>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Ciudad</th>
+        <th>Nit</th>
+        <th>Número de habitaciones</th>
+        <th>Configurar habitaciones</th>
+      </tr>
+      <tr *ngFor="let h of hoteles">
+        <td>{{h.nombre}}</td>
+        <td>{{h.direccion}}</td>
+        <td>{{h.ciudad}}</td>
+        <td>{{h.nit}}</td>
+        <td>{{h.numeroHabitaciones}}</td>
+        <td><button class="btn btn-success btn-sm" (click)="panelModificacion(h)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 
-<div>
-  <h2>Hoteles registrados</h2>
-  <table>
-    <tr>
-      <th>Nombre</th>
-      <th>Dirección</th>
-      <th>Ciudad</th>
-      <th>Configurar habitaciones</th>
-    </tr>
-    <tr *ngFor="let h of hoteles">
-      <td>{{h.nombre}}</td>
-      <td>{{h.direccion}}</td>
-      <td>{{h.ciudad}}</td>
-      <td><button>Modificar</button></td>
-    </tr>
-  </table>
-</div> 
+        </button></td>
+      </tr>
+    </table>
+  </div>
+  <div class="configurar" *ngIf="hotelHabitaciones.nombre != ''">
+    <h3>Modificar información de habitaciones</h3>
+    <div>
+      <label for="">Número de habitaciones:</label>
+      <input type="number" [(ngModel)]="nueva.habitaciones">
+    </div>
+    <div>
+      <label for="">Tipo:</label>
+      <select (change)="tipoHabitacion($event)" [(ngModel)]="nueva.tipo">
+        <option value="0" selected>Seleccionar</option>
+        <option *ngFor="let t of tiposHabitaciones" value="{{t.id}}">{{t.nombre}}</option>
+      </select>
+    </div>
+    <div>
+      <label for="">Acomodación:</label>
+      <select [(ngModel)]="nueva.acomodacion">
+        <option value="0" selected>Seleccionar</option>
+        <option *ngFor="let a of acomodaciones2" value="{{a.id}}">{{a.nombre}}</option>
+      </select>
+    </div>
+    <button class="btn btn-dark" (click)="actualizarDetalles()">Agregar</button>
+    <div class="alert alert-primary" *ngIf="error" (click)="cerrar()">Tienes ya suficientes habitaciones para este hotel</div>
+  </div>
+  <div class="habitaciones" *ngIf="hotelHabitaciones.nombre != ''">
+    <h3>Habitaciones hotel {{hotelHabitaciones.nombre}}</h3>
+    <table class="table">
+      <tr>
+        <th>Número de habitaciones</th>
+        <th>Tipo</th>
+        <th>Acomodación</th>
+      </tr>
+      <tr *ngFor="let h of habitaciones">
+        <td>{{h.habitaciones}}</td>
+        <td>{{h.tipo}}</td>
+        <td>{{h.acomodacion}}</td>      
+      </tr>
+    </table>
+  </div> 
+</div>
 
 <router-outlet></router-outlet>

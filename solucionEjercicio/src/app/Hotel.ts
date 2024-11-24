@@ -1,4 +1,5 @@
 export class Hotel{
+    id: number = 0
     nombre: string = ""
     direccion: string = ""
     nit: string = ""
